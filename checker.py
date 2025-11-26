@@ -20,7 +20,7 @@ instance_list = []
 for line in response.text.splitlines():
     if "url: '" in line:
         instance_list.append(line.replace("url: '", "").replace("',", "").strip())
-
+# instance_list = ["https://rss.4040940.xyz"]
 print(instance_list)
 
 
@@ -75,8 +75,8 @@ def sendTelegramMessage(message: str):
 
 
 result_text = "RSSHub Instance Check Results:\n"
-for instance, status in result_test.items():
+for instance, status in check_instances(instance_list).items():
     status_sent = "❌" if status != 200 else "✅"
     result_text += f"{status_sent}{instance}\n"
-
+print(result_text)
 sendTelegramMessage(result_text)
