@@ -1,0 +1,35 @@
+name: checker
+
+on:
+  schedule:
+    - cron: '30 10 * * *'
+  # push:
+  #   branches:
+  #     - master
+  workflow_dispatch:
+
+jobs:
+  checker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10' # Specify the Python version you need
+
+    - name: Clone repo
+      run: |
+        git clone https://github.com/iamCristYE/rsshub-checker.git
+        cd rsshub-chcker
+        pip install requests
+    
+    - name: Run Python script
+      run: |
+        cd rsshub-chcker
+        date
+        python checker.py
+        date
+      env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        
