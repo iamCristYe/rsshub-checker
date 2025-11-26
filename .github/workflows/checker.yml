@@ -21,12 +21,12 @@ jobs:
     - name: Clone repo
       run: |
         git clone https://github.com/iamCristYE/rsshub-checker.git
-        cd rsshub-chcker
+        cd rsshub-checker
         pip install requests
     
     - name: Run Python script
       run: |
-        cd rsshub-chcker
+        cd rsshub-checker
         date
         python checker.py
         date
