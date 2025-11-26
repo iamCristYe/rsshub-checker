@@ -30,6 +30,8 @@ def check_instances(instances):
         try:
             r = requests.get(instance + "/weibo/user/5617891490", timeout=60)
             results[instance] = r.status_code
+            if "Location" in r.headers:
+                results[instance] = f"Redirected to {r.headers['Location']}"
         except requests.RequestException as e:
             results[instance] = str(e)
     return results
