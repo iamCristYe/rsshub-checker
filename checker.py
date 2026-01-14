@@ -70,7 +70,7 @@ def sendTelegramMessage(message: str):
     payload = {
         "chat_id": chat_id,
         "text": message,
-        "thread_id": "17"
+        "message_thread_id": "17"
         
     }
     requests.post(url, data=payload)
