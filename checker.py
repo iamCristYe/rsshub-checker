@@ -67,18 +67,13 @@ def sendTelegramMessage(message: str):
     bot_token = os.getenv("TELEGRAM_BOT_TOKEN", "YOUR_BOT_TOKEN")
     chat_id = "-1002646331785"
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-    payload = {
-        "chat_id": chat_id,
-        "text": message,
-        "message_thread_id": "17"
-        
-    }
+    payload = {"chat_id": chat_id, "text": message, "message_thread_id": "17"}
     requests.post(url, data=payload)
 
 
 result_text = "RSSHub Instance Check Results:\n"
 for instance, status in check_instances(instance_list).items():
     status_sent = "❌" if status != 200 else "✅"
-    result_text += f"{status_sent}{instance}\n"
+    result_text += f"{status_sent}{instance}/weibo/user/5617891490\n"
 print(result_text)
 sendTelegramMessage(result_text)
